@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'admin-on-rest';
 import { stringify } from 'query-string';
 import { getCookie, getParameter, checkStatus, parseJSON } from 'util-request';
