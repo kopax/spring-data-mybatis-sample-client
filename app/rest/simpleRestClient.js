@@ -109,15 +109,15 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY_REFERENCE:
-        if (!json.page.totalElements) {
+        if (!json.totalElements) {
           throw new Error(
             'The page.totalElements is missing in the HTTP Response. The simple REST client expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare page.totalElements in the response body?'
           );
         }
 
         return {
-          data: json._embedded[Object.keys(json._embedded)[0]],
-          total: json.page.totalElements,
+          data: json.content,
+          total: json.totalElements,
         };
       case GET_ONE:
         return { data: json };

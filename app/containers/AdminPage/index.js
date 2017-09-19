@@ -37,10 +37,10 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <Admin authClient={authClient} restClient={restClient}>
-          <Resource name="managers" list={ManagerList} edit={ManagerEdit} create={ManagerCreate} icon={ManagerIcon} />
+        <Admin restClient={restClient}>
+          <Resource name="users" list={ManagerList} edit={ManagerEdit} create={ManagerCreate} icon={ManagerIcon} />
           <Resource name="roles" list={RoleList} edit={RoleEdit} create={RoleCreate} show={RoleShow} icon={RoleIcon} />
-          <Resource name="oAuthClients" list={ClientList} edit={ClientEdit} create={ClientCreate} icon={ClientIcon} />
+          {/*<Resource name="oAuthClient" list={ClientList} edit={ClientEdit} create={ClientCreate} icon={ClientIcon} />*/}
         </Admin>,
       </div>
     );

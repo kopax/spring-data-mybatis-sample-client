@@ -29,7 +29,7 @@ export const ManagerList = (props) => (
       <DateField source="createdDate" />
 
 
-      <ReferenceManyField label="Roles" reference="roles" target="role.id">
+      <ReferenceManyField label="Roles" reference="roles" target="userId">
         <SingleFieldList>
           <ChipField source="name" />
         </SingleFieldList>
