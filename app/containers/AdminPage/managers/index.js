@@ -16,13 +16,13 @@ import {
   SingleFieldList,
   ChipField,
   ReferenceManyField,
-  BooleanInput,
   BooleanField,
 } from 'admin-on-rest';
 export ManagerIcon from 'material-ui/svg-icons/action/book';
+import BooleanInput from '../adminonrestfix1045/BooleanInput';
 
 export const ManagerList = (props) => (
-  <List {...props} filter={{ active: true }}>
+  <List {...props} sort={{ field: 'id', order: 'ASC' }}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="username" />
@@ -32,15 +32,11 @@ export const ManagerList = (props) => (
       <TextField source="email" type="email" />
       <TextField source="mobile" />
       <DateField source="lastModifiedDate" />
-
-
-      {/*<ReferenceManyField label="Roles" reference="roles" target="userId">*/}
-        {/*<SingleFieldList>*/}
-          {/*<ChipField source="name" />*/}
-        {/*</SingleFieldList>*/}
-      {/*</ReferenceManyField>*/}
-
-
+      <ReferenceManyField label="Roles" reference="roles" target="userId">
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
+      </ReferenceManyField>
       <BooleanField source="deleted" />
       <EditButton basePath="/managers" />
     </Datagrid>

@@ -15,9 +15,9 @@ import {
   SelectArrayInput,
   Show,
   SimpleShowLayout,
-  BooleanInput,
   BooleanField,
 } from 'admin-on-rest';
+import BooleanInput from '../adminonrestfix1045/BooleanInput';
 
 export RoleIcon from 'material-ui/svg-icons/action/book';
 
