@@ -50,7 +50,6 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         break;
       }
       case GET_ONE:
-        console.log(resource, params);
         url = `${apiUrl}/${resource}/${params.id}`;
         break;
       case GET_MANY: {
@@ -123,6 +122,8 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         return { data: json };
       case CREATE:
         return { data: { ...params.data, id: json.id } };
+      case UPDATE: // because otherwise, REST response needs to have a data object
+        return { data: {} };
       default:
         return { data: json };
     }

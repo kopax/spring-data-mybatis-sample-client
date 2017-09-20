@@ -26,17 +26,22 @@ export const ManagerList = (props) => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="username" />
-      <DateField source="createdDate" />
+      <TextField source="firstName" />
+      <TextField source="lastName" />
+      <TextField source="middleName" />
+      <TextField source="email" type="email" />
+      <TextField source="mobile" />
+      <DateField source="lastModifiedDate" />
 
 
-      <ReferenceManyField label="Roles" reference="roles" target="userId">
-        <SingleFieldList>
-          <ChipField source="name" />
-        </SingleFieldList>
-      </ReferenceManyField>
+      {/*<ReferenceManyField label="Roles" reference="roles" target="userId">*/}
+        {/*<SingleFieldList>*/}
+          {/*<ChipField source="name" />*/}
+        {/*</SingleFieldList>*/}
+      {/*</ReferenceManyField>*/}
 
 
-      <BooleanField source="active" />
+      <BooleanField source="deleted" />
       <EditButton basePath="/managers" />
     </Datagrid>
   </List>
@@ -52,8 +57,15 @@ export const ManagerEdit = (props) => {
       <SimpleForm>
         <DisabledInput source="id" />
         <TextInput source="username" />
+        <TextInput source="firstName" />
+        <TextInput source="lastName" />
+        <TextInput source="middleName" />
+        <TextInput source="email" type="email" />
+        <TextInput source="mobile" />
+        <TextInput source="password" type="password" />
+        <TextInput label="Confirm password" source="password" type="password" />
         <DateInput label="Created date" source="createdDate" />
-        <BooleanInput source="active" defaultValue={false} />
+        <BooleanInput source="deleted" />
 
       </SimpleForm>
     </Edit>
@@ -64,8 +76,14 @@ export const ManagerCreate = (props) => (
   <Create title="Create a Manager" {...props}>
     <SimpleForm>
       <TextInput source="username" />
-      <TextInput source="password" />
-      <BooleanInput source="active" />
+      <TextInput source="firstName" />
+      <TextInput source="lastName" />
+      <TextInput source="middleName" />
+      <TextInput source="email" type="email" />
+      <TextInput source="mobile" />
+      <TextInput source="password" type="password" />
+      <TextInput label="Confirm password" source="password" type="password" />
+      <BooleanInput source="deleted" />
     </SimpleForm>
   </Create>
 );

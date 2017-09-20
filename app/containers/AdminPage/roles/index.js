@@ -15,6 +15,8 @@ import {
   SelectArrayInput,
   Show,
   SimpleShowLayout,
+  BooleanInput,
+  BooleanField,
 } from 'admin-on-rest';
 
 export RoleIcon from 'material-ui/svg-icons/action/book';
@@ -25,6 +27,7 @@ export const RoleList = (props) => (
       <TextField source="id" />
       <TextField source="name" />
       <DateField source="createdDate" />
+      <BooleanField source="deleted" />
       <EditButton basePath="/roles" />
     </Datagrid>
   </List>
@@ -41,6 +44,7 @@ export const RoleEdit = (props) => {
         <DisabledInput source="id" />
         <TextInput source="name" />
         <DisabledInput label="Created date" source="createdDate" />
+        <BooleanInput source="deleted" />
       </SimpleForm>
     </Edit>
   );
@@ -60,6 +64,7 @@ export const RoleShow = (props) => (
       <TextField source="id" />
       <TextField source="name" />
       <DateField label="Created date" source="createdDate" />
+      <BooleanInput source="deleted" />
     </SimpleShowLayout>
   </Show>
 );

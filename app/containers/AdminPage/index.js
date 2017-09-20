@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*
  * FeaturePage
  *
@@ -34,9 +35,6 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
           <title>Admin on Rest Page</title>
           <meta name="description" content="Admin on Rest page of React.js Boilerplate application" />
         </Helmet>
-        <H1>
-          <FormattedMessage {...messages.header} />
-        </H1>
         <Admin restClient={restClient}>
           <Resource name="users" list={ManagerList} edit={ManagerEdit} create={ManagerCreate} icon={ManagerIcon} />
           <Resource name="roles" list={RoleList} edit={RoleEdit} create={RoleCreate} show={RoleShow} icon={RoleIcon} />
