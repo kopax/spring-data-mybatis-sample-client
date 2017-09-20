@@ -16,13 +16,28 @@ import {
   Show,
   SimpleShowLayout,
   BooleanField,
+  Filter,
 } from 'admin-on-rest';
 import BooleanInput from '../adminonrestfix1045/BooleanInput';
 
-export RoleIcon from 'material-ui/svg-icons/action/book';
+export RoleIcon from 'material-ui/svg-icons/action/assignment-ind';
+
+const RoleFilter = (props) => (
+  <Filter {...props}>
+    {[
+      <TextInput key="id" label="Id" source="id" alwaysOn />,
+      <TextInput key="name" label="Name" source="name" defaultValue="USER" alwaysOn />,
+    ].reverse()}
+  </Filter>
+);
 
 export const RoleList = (props) => (
-  <List {...props}>
+  <List
+    {...props}
+    filter={{ deleted: false }}
+    sort={{ field: 'id', order: 'DESC' }}
+    filters={<RoleFilter />}
+  >
     <Datagrid>
       <TextField source="id" />
       <TextField source="name" />

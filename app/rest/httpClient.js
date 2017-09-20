@@ -16,8 +16,6 @@ export default (url, options = {}) => {
 
   if (options.method && ['PUT', 'POST', 'PATCH', 'DELETE'].includes(options.method)) {
     options.headers.set('X-XSRF-TOKEN', getCookie('XSRF-TOKEN'));
-    console.log('httpClient', url);
-    console.log('httpClient options', options);
   }
   return fetchUtils.fetchJson(url, options);
 };

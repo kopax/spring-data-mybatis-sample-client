@@ -40,11 +40,9 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         const { field, order } = params.sort;
         const query = {
           sort: [field, order].join(','),
-          range: JSON.stringify([
-            (page - 1) * perPage,
-            page * perPage - 1,
-          ]),
-          filter: JSON.stringify(params.filter),
+          page: page - 1,
+          size: perPage,
+          ...params.filter,
         };
         url = `${apiUrl}/${resource}?${stringify(query)}`;
         break;
@@ -54,7 +52,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         break;
       case GET_MANY: {
         const query = {
-          filter: JSON.stringify({ id: params.ids }),
+          ...{ id: params.ids },
         };
         url = `${apiUrl}/${resource}?${stringify(query)}`;
         break;
@@ -64,14 +62,12 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         const { field, order } = params.sort;
         const query = {
           sort: [field, order].join(','),
-          range: JSON.stringify([
-            (page - 1) * perPage,
-            page * perPage - 1,
-          ]),
-          filter: JSON.stringify({
+          page: page - 1,
+          size: perPage,
+          ...{
             ...params.filter,
             [params.target]: params.id,
-          }),
+          },
         };
         url = `${apiUrl}/${resource}?${stringify(query)}`;
         break;
@@ -108,7 +104,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY_REFERENCE:
-        if (!json.totalElements) {
+        if (json.totalElements === undefined) {
           throw new Error(
             'The page.totalElements is missing in the HTTP Response. The simple REST client expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare page.totalElements in the response body?'
           );
