@@ -18,10 +18,10 @@ import {
   ReferenceManyField,
   BooleanField,
 } from 'admin-on-rest';
-export ManagerIcon from 'material-ui/svg-icons/action/book';
+export UserIcon from 'material-ui/svg-icons/action/book';
 import BooleanInput from '../adminonrestfix1045/BooleanInput';
 
-export const ManagerList = (props) => (
+export const UserList = (props) => (
   <List {...props} sort={{ field: 'id', order: 'ASC' }}>
     <Datagrid>
       <TextField source="id" />
@@ -43,13 +43,13 @@ export const ManagerList = (props) => (
   </List>
 );
 
-const ManagerTitle = ({ record }) => {
-  return <span>Manager {record ? `"${record.username}"` : ''}</span>;
+const UserTitle = ({ record }) => {
+  return <span>User {record ? `"${record.username}"` : ''}</span>;
 };
 
-export const ManagerEdit = (props) => {
+export const UserEdit = (props) => {
   return (
-    <Edit title={<ManagerTitle />} {...props}>
+    <Edit title={<UserTitle />} {...props}>
       <SimpleForm>
         <DisabledInput source="id" />
         <TextInput source="username" />
@@ -68,8 +68,8 @@ export const ManagerEdit = (props) => {
   );
 }
 
-export const ManagerCreate = (props) => (
-  <Create title="Create a Manager" {...props}>
+export const UserCreate = (props) => (
+  <Create title="Create a User" {...props}>
     <SimpleForm>
       <TextInput source="username" />
       <TextInput source="firstName" />

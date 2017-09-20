@@ -15,7 +15,7 @@ import { Admin, Resource } from 'admin-on-rest';
 import H1 from 'components/H1';
 
 import { RoleList, RoleEdit, RoleCreate, RoleShow, RoleIcon } from './roles';
-import { ManagerList, ManagerEdit, ManagerCreate, ManagerIcon } from './managers';
+import { UserList, UserEdit, UserCreate, UserIcon } from './users';
 import { ClientList, ClientEdit, ClientCreate, ClientIcon } from './oAuthClients';
 
 import messages from './messages';
@@ -36,7 +36,7 @@ export default class FeaturePage extends React.Component { // eslint-disable-lin
           <meta name="description" content="Admin on Rest page of React.js Boilerplate application" />
         </Helmet>
         <Admin restClient={restClient}>
-          <Resource name="users" list={ManagerList} edit={ManagerEdit} create={ManagerCreate} icon={ManagerIcon} />
+          <Resource name="users" list={UserList} edit={UserEdit} create={UserCreate} icon={UserIcon} />
           <Resource name="roles" list={RoleList} edit={RoleEdit} create={RoleCreate} show={RoleShow} icon={RoleIcon} />
           {/*<Resource name="oAuthClient" list={ClientList} edit={ClientEdit} create={ClientCreate} icon={ClientIcon} />*/}
         </Admin>,
