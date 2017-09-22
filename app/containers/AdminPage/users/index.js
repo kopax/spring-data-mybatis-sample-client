@@ -16,6 +16,9 @@ import {
   SingleFieldList,
   ChipField,
   ReferenceManyField,
+  ReferenceArrayField,
+  ReferenceArrayInput,
+  SelectArrayInput,
   BooleanField,
   Filter,
 } from 'admin-on-rest';
@@ -51,7 +54,12 @@ export const UserList = (props) => (
       <TextField source="email" type="email" />
       <TextField source="mobile" />
       <DateField source="lastModifiedDate" />
-      <ReferenceManyField label="Roles" reference="roles" target="userId">
+      <ReferenceArrayField label="Roles test1" reference="roles" source="roleIdList">
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
+      </ReferenceArrayField>
+      <ReferenceManyField label="Roles test2" reference="roles" target="userId">
         <SingleFieldList>
           <ChipField source="name" />
         </SingleFieldList>

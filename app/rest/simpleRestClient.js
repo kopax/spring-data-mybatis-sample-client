@@ -36,8 +36,10 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     const options = {};
     switch (type) {
       case GET_LIST: {
+
         const { page, perPage } = params.pagination;
         const { field, order } = params.sort;
+
         const query = {
           sort: [field, order].join(','),
           page: page - 1,
@@ -51,6 +53,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         url = `${apiUrl}/${resource}/${params.id}`;
         break;
       case GET_MANY: {
+
         const query = {
           ...{ id: params.ids },
         };
@@ -104,15 +107,14 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     switch (type) {
       case GET_LIST:
       case GET_MANY_REFERENCE:
-        if (json.totalElements === undefined) {
+        if (json.page.totalElements === undefined) {
           throw new Error(
             'The page.totalElements is missing in the HTTP Response. The simple REST client expects responses for lists of resources to contain this header with the total number of results to build the pagination. If you are using CORS, did you declare page.totalElements in the response body?'
           );
         }
-
         return {
-          data: json.content,
-          total: json.totalElements,
+          data: json._embedded ? json._embedded[Object.keys(json._embedded)[0]] : [],
+          total: json.page.totalElements,
         };
       case GET_ONE:
         return { data: json };
@@ -121,7 +123,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
       case UPDATE: // because otherwise, REST response needs to have a data object
         return { data: {} };
       default:
-        return { data: json };
+        return { data: json._embedded ? json._embedded[Object.keys(json._embedded)]: json };
     }
   };
 
