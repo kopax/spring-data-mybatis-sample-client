@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { stringify } from 'query-string';
 import { fetchUtils } from 'admin-on-rest';
 import {
@@ -36,7 +35,6 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
     const options = {};
     switch (type) {
       case GET_LIST: {
-
         const { page, perPage } = params.pagination;
         const { field, order } = params.sort;
 
@@ -53,7 +51,6 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         url = `${apiUrl}/${resource}/${params.id}`;
         break;
       case GET_MANY: {
-
         const query = {
           ...{ id: params.ids },
         };
@@ -102,6 +99,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
    * @param {Object} params The REST request params, depending on the type
    * @returns {Object} REST response
    */
+  /* eslint-disable no-underscore-dangle */
   const convertHTTPResponseToREST = (response, type, resource, params) => {
     const { json } = response;
     switch (type) {
@@ -120,12 +118,13 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
         return { data: json };
       case CREATE:
         return { data: { ...params.data, id: json.id } };
-      case UPDATE: // because otherwise, REST response needs to have a data object
-        return { data: {} };
+      case UPDATE:
+        return { data: json || {} };
       default:
-        return { data: json._embedded ? json._embedded[Object.keys(json._embedded)]: json };
+        return { data: json._embedded ? json._embedded[Object.keys(json._embedded)] : json };
     }
   };
+  /* eslint-enable no-underscore-dangle */
 
   /**
    * @param {string} type Request type, e.g GET_LIST

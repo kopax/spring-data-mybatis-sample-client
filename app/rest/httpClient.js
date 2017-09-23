@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { fetchUtils } from 'admin-on-rest';
 import { getCookie } from 'util-request';
 

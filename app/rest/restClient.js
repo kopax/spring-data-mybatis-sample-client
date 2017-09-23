@@ -1,4 +1,3 @@
-/* eslint-disable */
 import simpleRestClient from './simpleRestClient';
 import httpClient from './httpClient';
 
